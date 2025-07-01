@@ -4,6 +4,7 @@ import {
     DefaultSchedulerPlugin,
     DefaultSearchPlugin,
     VendureConfig,
+    LanguageCode,
 } from '@vendure/core';
 import { defaultEmailHandlers, EmailPlugin, FileBasedTemplateLoader } from '@vendure/email-plugin';
 import { AssetServerPlugin } from '@vendure/asset-server-plugin';
@@ -52,7 +53,20 @@ export const config: VendureConfig = {
     },
     // When adding or altering custom field definitions, the database will
     // need to be updated. See the "Migrations" section in README.md.
-    customFields: {},
+    customFields: {
+        Product: [
+            {
+                name: 'vendor',
+                type: 'string',
+                label: [{ languageCode: LanguageCode.en, value: 'Vendor Name' }],
+            },
+            {
+                name: 'gpsLocation',
+                type: 'string',
+                label: [{ languageCode: LanguageCode.en, value: 'GPS Location (lat,lng)' }],
+            },
+        ]
+    },
     plugins: [
         GraphiqlPlugin.init(),
         AssetServerPlugin.init({
