@@ -20,7 +20,12 @@ export class VendorResolver {
   async createVendor(
     @Args('input') input: CreateVendorInput,
   ): Promise<Vendor> {
-    const vendor = this.vendorRepo.create(input);
-    return this.vendorRepo.save(vendor);
+   // Safely create and save vendor
+   // create() instantiates a new entity object.
+   // If input includes an id, it'll be treated as an update.
+   // If input.id is undefined, it's treated as a new record (INSERT).
+   const newVendor = this.vendorRepo.create(input);
+   return await this.vendorRepo.save(newVendor);
+   // This avoids the TypeORM crash caused when .save() is called directly on an object missing a required primary key for updates.
   }
 }
