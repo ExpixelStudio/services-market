@@ -13,7 +13,9 @@ import { GraphiqlPlugin } from '@vendure/graphiql-plugin';
 import 'dotenv/config';
 import path from 'path';
 
+//Custom plugins    
 import { VendorPlugin } from './plugins/vendor/vendor.plugin';  
+import { CustomerLocationPlugin } from './plugins/customer-location/customer-location.plugin';
 
 
 const IS_DEV = process.env.APP_ENV === 'dev';
@@ -107,5 +109,7 @@ export const config: VendureConfig = {
         }),
         //Custom plugin for vendors 
         VendorPlugin,
+        //Custom plugin for customer locations
+        CustomerLocationPlugin,
     ],
 };
