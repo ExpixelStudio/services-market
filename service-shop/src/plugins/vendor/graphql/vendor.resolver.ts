@@ -4,8 +4,11 @@ import { Repository } from 'typeorm';
 import { Vendor } from '../vendor.entity';
 import { CreateVendorInput, CustomerCoordinatesInput, NearbyVendor, VendorType } from './dto';
 
-// ✅ Haversine distance calculation (inline version)
-function haversineDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
+import { haversineDistance } from '../utils/geoDistance'; // ✅ Haversine distance calculation from utils folder
+
+//Implementation of Haversine distance calculation (inline version) kept for reference. But the utils/geoDistance.ts file is used instead.
+// Haversine distance calculation (inline version)
+/* function haversineDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
   const R = 6371;
   const dLat = (lat2 - lat1) * Math.PI / 180;
   const dLon = (lon2 - lon1) * Math.PI / 180;
@@ -15,7 +18,7 @@ function haversineDistance(lat1: number, lon1: number, lat2: number, lon2: numbe
     Math.cos(lat2 * Math.PI / 180) *
     Math.sin(dLon / 2) ** 2;
   return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
-}
+} */
 
 
 @Resolver()
