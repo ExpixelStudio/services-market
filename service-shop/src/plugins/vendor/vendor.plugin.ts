@@ -12,6 +12,7 @@ import { VendorResolver } from './graphql/vendor.resolver';
     schema: gql`
       extend type Query {
         vendors: [Vendor!]!
+        getNearbyVendors(input: CustomerCoordinatesInput!): [NearbyVendor!]!
       }
 
       extend type Mutation {
@@ -29,6 +30,12 @@ import { VendorResolver } from './graphql/vendor.resolver';
         deliveryAvailable: Boolean!
       }
 
+      input CustomerCoordinatesInput {
+        gpsLat: Float!
+        gpsLng: Float!
+      }
+
+
       type Vendor {
         id: ID!
         name: String!
@@ -39,6 +46,11 @@ import { VendorResolver } from './graphql/vendor.resolver';
         isOpen: Boolean!
         businessType: String!
         deliveryAvailable: Boolean!
+      }
+
+      type NearbyVendor {
+        vendor: Vendor!
+        distance: Float!
       }
     `,
     resolvers: [VendorResolver],
