@@ -23,7 +23,7 @@ Installed Vendure backend using CLI : ```npx @vendure/create my-shop```
    * Fetch them using a `vendors` query
    * Prepare for later filtering (by distance, open status, etc.)
 
-4.
+4. Create custom Customer-location plug-in
 
 
 # Learning
