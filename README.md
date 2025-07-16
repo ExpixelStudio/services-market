@@ -25,6 +25,10 @@ Installed Vendure backend using CLI : ```npx @vendure/create my-shop```
 
 4. Create custom Customer-location plug-in
 
+5. Enhance the getNearbyVendors query (customer-location plug-in) to support filtering options such as:
+- isOpen: true/false
+- deliveryAvailable: true/false
+- businessType: 'food' | 'freight'  etc ...
 
 # Learning
 
@@ -35,3 +39,14 @@ Vendure uses **TypeORM** to manage entities.
 * `@Entity()` registers the model in the DB
 * `VendureEntity` gives you `createdAt`, `updatedAt` by default
 * `@Column()` defines each DB column (with its type)
+
+nullable eg in .dto  
+
+`
+@Field({ nullable: true }) isOpen?: boolean;               
+  @Field({ nullable: true }) deliveryAvailable?: boolean;    
+  @Field({ nullable: true }) businessType?: string;   
+  `       
+
+- nullable: true makes GraphQL treat the field as optional.
+- The ? makes TypeScript treat it as optional.
