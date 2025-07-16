@@ -22,6 +22,11 @@ export class VendorType {
 export class CustomerCoordinatesInput {
   @Field(() => Float) gpsLat: number;
   @Field(() => Float) gpsLng: number;
+
+  //for filtering 
+  @Field({ nullable: true }) isOpen?: boolean;               // nullable / Optional
+  @Field({ nullable: true }) deliveryAvailable?: boolean;    // Optional
+  @Field({ nullable: true }) businessType?: string;          // Optional
 }
 
 @ObjectType()
