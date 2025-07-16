@@ -1,8 +1,8 @@
-import { PluginCommonModule, VendurePlugin } from '@vendure/core';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import gql from 'graphql-tag';
-import { Vendor } from './vendor.entity';
-import { VendorResolver } from './graphql/vendor.resolver';
+import { PluginCommonModule, VendurePlugin } from "@vendure/core";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import gql from "graphql-tag";
+import { Vendor } from "./vendor.entity";
+import { VendorResolver } from "./graphql/vendor.resolver";
 
 @VendurePlugin({
   imports: [PluginCommonModule, TypeOrmModule.forFeature([Vendor])],
@@ -12,7 +12,6 @@ import { VendorResolver } from './graphql/vendor.resolver';
     schema: gql`
       extend type Query {
         vendors: [Vendor!]!
-        getNearbyVendors(input: CustomerCoordinatesInput!): [NearbyVendor!]!
       }
 
       extend type Mutation {
@@ -30,12 +29,6 @@ import { VendorResolver } from './graphql/vendor.resolver';
         deliveryAvailable: Boolean!
       }
 
-      input CustomerCoordinatesInput {
-        gpsLat: Float!
-        gpsLng: Float!
-      }
-
-
       type Vendor {
         id: ID!
         name: String!
@@ -46,11 +39,6 @@ import { VendorResolver } from './graphql/vendor.resolver';
         isOpen: Boolean!
         businessType: String!
         deliveryAvailable: Boolean!
-      }
-
-      type NearbyVendor {
-        vendor: Vendor!
-        distance: Float!
       }
     `,
     resolvers: [VendorResolver],

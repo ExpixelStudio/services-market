@@ -15,7 +15,8 @@ export class CreateVendorInput {
   @Field() deliveryAvailable: boolean;
 }
 
-@ObjectType()
+// Moved and used from shared dto
+/* @ObjectType()
 export class VendorType {
   @Field(() => ID) id: number;
   @Field() name: string;
@@ -26,11 +27,14 @@ export class VendorType {
   @Field() isOpen: boolean;
   @Field() businessType: string;
   @Field() deliveryAvailable: boolean;
-}
+} */
 
 //This is for the customer to get the nearby vendors, so we need to pass the customer's coordinates. 
 // It is used in the vendor.resolver.ts file.
-@InputType('CustomerCoordinatesInput')
+
+//refactored moved to vendor-customer-shared.dto.ts file. Kept for reference. 
+//This refactor was also to move vendor distance logic to the correct customer-location plugin and not vendor plugin.
+/* @InputType('CustomerCoordinatesInput')
 export class CustomerCoordinatesInput {
   @Field(() => Float) gpsLat: number;
   @Field(() => Float) gpsLng: number;
@@ -40,4 +44,4 @@ export class CustomerCoordinatesInput {
 export class NearbyVendor {
   @Field(() => VendorType) vendor: VendorType;
   @Field(() => Float) distance: number;
-}
+} */

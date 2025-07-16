@@ -2,9 +2,9 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Vendor } from '../vendor.entity';
-import { CreateVendorInput, CustomerCoordinatesInput, NearbyVendor, VendorType } from './dto';
+import { CreateVendorInput} from './dto';
+import { VendorType} from '../../shared/graphql-types/vendor-customer-shared.dto';
 
-import { haversineDistance } from '../utils/geoDistance'; // ✅ Haversine distance calculation from utils folder
 
 //Implementation of Haversine distance calculation (inline version) kept for reference. But the utils/geoDistance.ts file is used instead.
 // Haversine distance calculation (inline version)
@@ -47,41 +47,5 @@ export class VendorResolver {
   }
   
 
-  @Query(() => [NearbyVendor])
-async getNearbyVendors(
-  @Args('input') input: CustomerCoordinatesInput,
-): Promise<NearbyVendor[]> {
-  const vendors = await this.vendorRepo.find();
-
-  const results = vendors.map((vendor) => {
-    const distance = haversineDistance(
-      input.gpsLat,
-      input.gpsLng,
-      vendor.gpsLat,
-      vendor.gpsLng
-    );
-
-   // 🛠️ Convert `vendor` entity to VendorType explicitly
-  const vendorType: VendorType = {
-    id: vendor.id,
-    name: vendor.name,
-    contactNumber: vendor.contactNumber,
-    address: vendor.address,
-    gpsLat: vendor.gpsLat,
-    gpsLng: vendor.gpsLng,
-    isOpen: vendor.isOpen,
-    businessType: vendor.businessType,
-    deliveryAvailable: vendor.deliveryAvailable,
-  };
-
-    return {
-      vendor,
-      distance,
-    };
-  });
-
-  // Optional: sort by closest first
-  return results.sort((a, b) => a.distance - b.distance);
-}
-
+  // Nearby vendor logic moved to customer-location plugin.
 }
