@@ -37,7 +37,15 @@ async getNearbyVendors(
 ): Promise<NearbyVendor[]> {
   const vendors = await this.vendorRepo.find();
 
-  const results = vendors.map((vendor) => {
+  // Apply optional filters BEFORE distance calculation
+  const filteredVendors = vendors.filter((vendor) => {
+    if (input.isOpen !== undefined && vendor.isOpen !== input.isOpen) return false;
+    if (input.deliveryAvailable !== undefined && vendor.deliveryAvailable !== input.deliveryAvailable) return false;
+    if (input.businessType && vendor.businessType !== input.businessType) return false;
+    return true;
+  });
+
+  const results = filteredVendors.map((vendor) => {
     const distance = haversineDistance(
       input.gpsLat,
       input.gpsLng,
@@ -59,7 +67,7 @@ async getNearbyVendors(
   };
 
     return {
-      vendor,
+      vendor: vendorType,
       distance,
     };
   });

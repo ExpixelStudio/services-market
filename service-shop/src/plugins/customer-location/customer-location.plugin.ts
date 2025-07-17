@@ -43,6 +43,9 @@ import { Vendor } from "../vendor/vendor.entity"; // Needed to query all vendors
       input CustomerCoordinatesInput {
         gpsLat: Float!
         gpsLng: Float!
+        isOpen: Boolean 
+        deliveryAvailable: Boolean  
+        businessType: String
       }
 
       type NearbyVendor {
