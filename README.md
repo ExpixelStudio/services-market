@@ -30,6 +30,8 @@ Installed Vendure backend using CLI : ```npx @vendure/create my-shop```
 - deliveryAvailable: true/false
 - businessType: 'food' | 'freight'  etc ...
 
+6. Add updateVendor and deleteVendor mutations.
+
 # Learning
 
 As it relates to **entities** in plugins.
