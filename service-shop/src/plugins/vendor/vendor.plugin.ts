@@ -16,6 +16,8 @@ import { VendorResolver } from "./graphql/vendor.resolver";
 
       extend type Mutation {
         createVendor(input: CreateVendorInput!): Vendor!
+        updateVendor(input: UpdateVendorInput!): Vendor!
+        deleteVendor(id: ID!): Boolean!
       }
 
       input CreateVendorInput {
@@ -39,6 +41,18 @@ import { VendorResolver } from "./graphql/vendor.resolver";
         isOpen: Boolean!
         businessType: String!
         deliveryAvailable: Boolean!
+      }
+
+      input UpdateVendorInput {
+        id: ID!
+        name: String
+        contactNumber: String
+        address: String
+        gpsLat: Float
+        gpsLng: Float
+        isOpen: Boolean
+        businessType: String
+        deliveryAvailable: Boolean
       }
     `,
     resolvers: [VendorResolver],

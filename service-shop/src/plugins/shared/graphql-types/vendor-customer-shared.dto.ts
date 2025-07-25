@@ -29,6 +29,21 @@ export class CustomerCoordinatesInput {
   @Field({ nullable: true }) businessType?: string;          // Optional
 }
 
+@InputType()
+export class UpdateVendorInput {
+  @Field(() => ID) id: number; // Required for identifying which vendor to update
+
+  @Field({ nullable: true }) name?: string;
+  @Field({ nullable: true }) contactNumber?: string;
+  @Field({ nullable: true }) address?: string;
+  @Field(() => Float, { nullable: true }) gpsLat?: number;
+  @Field(() => Float, { nullable: true }) gpsLng?: number;
+  @Field({ nullable: true }) isOpen?: boolean;
+  @Field({ nullable: true }) businessType?: string;
+  @Field({ nullable: true }) deliveryAvailable?: boolean;
+}
+
+
 @ObjectType()
 export class NearbyVendor {
   @Field(() => VendorType) vendor: VendorType;
