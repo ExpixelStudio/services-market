@@ -16,6 +16,7 @@ import path from 'path';
 //Custom plugins    
 import { VendorPlugin } from './plugins/vendor/vendor.plugin';  
 import { CustomerLocationPlugin } from './plugins/customer-location/customer-location.plugin';
+import { VendorItemPlugin } from './plugins/vendor-item/vendor-item.plugin';
 
 
 const IS_DEV = process.env.APP_ENV === 'dev';
@@ -111,5 +112,7 @@ export const config: VendureConfig = {
         VendorPlugin,
         //Custom plugin for customer locations
         CustomerLocationPlugin,
+        //Custom plugin for adding vendor items
+        VendorItemPlugin,
     ],
 };
