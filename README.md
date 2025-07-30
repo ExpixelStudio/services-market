@@ -32,6 +32,11 @@ Installed Vendure backend using CLI : ```npx @vendure/create my-shop```
 
 6. Add updateVendor and deleteVendor mutations.
 
+7. Create vendorItem plugin  
+  This is for vendors to upload and display thier product(s) or service(s)
+- Food menus (food trucks)
+- Products (delivery warehouses, small shops)
+- etc
 # Learning
 
 As it relates to **entities** in plugins.
