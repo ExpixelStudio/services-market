@@ -8,8 +8,8 @@ export class CreateVendorInput {
   @Field() address: string;
   @Field(() => Float) gpsLat: number;
   @Field(() => Float) gpsLng: number;
-  @Field(() => Float) customerGpsLat: number;
-  @Field(() => Float) customerGpsLng: number;
+  /* @Field(() => Float) customerGpsLat: number;
+  @Field(() => Float) customerGpsLng: number; */
   @Field() isOpen: boolean;
   @Field() businessType: string;
   @Field() deliveryAvailable: boolean;
