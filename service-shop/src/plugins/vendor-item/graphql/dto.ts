@@ -16,6 +16,16 @@ export class CreateVendorItemInput {
   @Field(() => ID) vendorId: number;
 }
 
+@InputType()
+export class VendorItemSearchInput {
+  @Field({ nullable: true }) keyword?: string;
+
+  @Field({ nullable: true }) available?: boolean;      // filter by item availability
+  @Field({ nullable: true }) type?: string;            // "FOOD", "SERVICE", etc.
+  @Field({ nullable: true }) isVendorOpen?: boolean;   // filters by vendor.isOpen
+}
+
+
 @ObjectType()
 export class VendorItemType {
   @Field(() => ID) id: number;

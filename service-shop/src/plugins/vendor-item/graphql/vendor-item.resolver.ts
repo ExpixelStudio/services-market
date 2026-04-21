@@ -6,6 +6,7 @@ import { VendorItem } from '../vendor-item.entity';
 import { Vendor } from '../../vendor/vendor.entity';
 import {
   CreateVendorItemInput,
+  VendorItemSearchInput,
   VendorItemType,
 } from './dto';
 
@@ -44,4 +45,39 @@ export class VendorItemResolver {
       relations: ['vendor'],
     });
   }
+
+  @Query(() => [VendorItemType])
+  async searchVendorItems(
+    @Args('input') input: VendorItemSearchInput,
+  ): Promise<VendorItem[]> {
+    const allItems = await this.itemRepo.find({ relations: ['vendor'] });
+  
+    const keyword = input.keyword?.toLowerCase();
+  
+    return allItems.filter(item => {
+      const matchesKeyword =
+        !keyword ||
+        item.name.toLowerCase().includes(keyword) ||
+        item.tags?.some(tag => tag.toLowerCase().includes(keyword));
+  
+      const matchesAvailability =
+        input.available === undefined || item.available === input.available;
+  
+      const matchesType =
+        !input.type || item.type?.toLowerCase() === input.type.toLowerCase();
+  
+      const matchesVendorOpen =
+        input.isVendorOpen === undefined ||
+        item.vendor?.isOpen === input.isVendorOpen;
+  
+      return (
+        matchesKeyword &&
+        matchesAvailability &&
+        matchesType &&
+        matchesVendorOpen
+      );
+    });
+  }
+  
+
 }

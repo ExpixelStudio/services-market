@@ -22,6 +22,14 @@ import { Vendor } from '../vendor/vendor.entity'; // required for resolver injec
       extend type Query {
         getVendorItems: [VendorItem!]!
         getVendorItemsByVendor(vendorId: Int!): [VendorItem!]!
+        searchVendorItems(input: VendorItemSearchInput): [VendorItem!]!
+      }
+
+      input VendorItemSearchInput {
+        keyword: String
+        available: Boolean
+        type: String
+        isVendorOpen: Boolean
       }
 
       input CreateVendorItemInput {
