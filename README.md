@@ -37,6 +37,13 @@ Installed Vendure backend using CLI : ```npx @vendure/create my-shop```
 - Food menus (food trucks)
 - Products (delivery warehouses, small shops)
 - etc
+
+8. Implement Search for Vendor Items by Name or Tags
+   Search for vendor items by:
+  name (partial match)
+  tags (keyword matching)
+  Find vendors selling a specific food or service
+  Search for items like “pizza”, “oil change”, “vegetarian”, etc.
 # Learning
 
 As it relates to **entities** in plugins.
